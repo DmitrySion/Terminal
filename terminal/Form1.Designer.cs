@@ -414,12 +414,13 @@
             this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button9.Font = new System.Drawing.Font("Segoe UI Light", 18.75F);
             this.button9.Image = global::terminal.Resource1.icons8_сортировать_по_убыванию_96;
-            this.button9.Location = new System.Drawing.Point(1312, 396);
+            this.button9.Location = new System.Drawing.Point(1312, 395);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(142, 57);
+            this.button9.Size = new System.Drawing.Size(142, 58);
             this.button9.TabIndex = 6;
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Visible = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button10
             // 
@@ -433,6 +434,7 @@
             this.button10.TabIndex = 7;
             this.button10.UseVisualStyleBackColor = false;
             this.button10.Visible = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // panel3
             // 
@@ -488,6 +490,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.Location = new System.Drawing.Point(-4, -1);
+            this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -747,6 +750,7 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.Location = new System.Drawing.Point(-4, 151);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;

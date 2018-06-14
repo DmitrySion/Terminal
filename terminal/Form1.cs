@@ -29,7 +29,7 @@ namespace terminal
             button4.Visible = true;
             button5.Visible = true;
             button6.Visible = true;
-          
+
             //////////////////////
             //ПОДКЛЮЧЕНИЕ К БАЗЕ//
             //////////////////////
@@ -173,8 +173,7 @@ namespace terminal
             {
                 otprav = textBox1.Text;
 
-                if (textBox1.Text != "Поиск рейса" && textBox1.Text != "") 
-           
+                if (textBox1.Text != "Поиск рейса" && textBox1.Text != "")
                 {
                     for (int i = 0; i < dataGridView1.RowCount; i++)
                     {
@@ -268,9 +267,9 @@ namespace terminal
             dataGridView1.ClearSelection();
             label2.Text = "Рейсов доступно: " + dataGridView1.RowCount.ToString();
         }
-        
+
         public static string[] mounths = new string[13];
-    
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             mounths[1] = "января";
@@ -293,18 +292,20 @@ namespace terminal
             {
                 label3.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute;
             }
-           
+
             label4.Text = DateTime.Now.Day + " " + mounths[DateTime.Now.Month] + " " + DateTime.Now.Year + " г.";
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
-                int r = dataGridView1.CurrentCell.RowIndex;
-               
-               
-                if (r < dataGridView1.Rows.Count-1) { r++;
-            dataGridView1.CurrentCell = dataGridView1.Rows[r].Cells[0];
+
+            int r = dataGridView1.CurrentCell.RowIndex;
+
+
+            if (r < dataGridView1.Rows.Count - 1)
+            {
+                r++;
+                dataGridView1.CurrentCell = dataGridView1.Rows[r].Cells[0];
             }
 
         }
@@ -367,11 +368,11 @@ namespace terminal
             //ЗАГРУЖАЕМ ТАБЛИЦУ ПОЛЬЗОВАТЕЛЕЙ
             for (int i = 0; i < dataGridView2.RowCount; i++)
             {
-                
+
                 id_bileta = Convert.ToString(dataGridView2.Rows[i].Cells[0].Value);
                 MySqlCommand com = new MySqlCommand("SELECT count(*) FROM Talon_Bilet WHERE ID_Bileta = '" + id_bileta + "'", connectaa);
                 int ia = Convert.ToInt32(com.ExecuteScalar());
-               // MessageBox.Show(ia.ToString(), id_bileta);
+                // MessageBox.Show(ia.ToString(), id_bileta);
                 if (ia == 1)
                 {
                     dataGridView2.Rows.RemoveAt(i);
@@ -381,18 +382,18 @@ namespace terminal
             label10.Text = "Билетов доступно: " + dataGridView2.RowCount.ToString();
         }
         public static string id_bileta, id_talona;
-     
+
         private void button8_Click(object sender, EventArgs e)
         {
-            string rnd_id_sotr= "789456";
-            
+            string rnd_id_sotr = "789456";
+
             int rnd_value, rnd_value2;
             int index = dataGridView1.CurrentCell.RowIndex;
             id_bileta = Convert.ToString(dataGridView2.Rows[index].Cells[0].Value);
             Random rnd = new Random();
             rnd_value = rnd.Next(100001, 999998);
             rnd_value2 = rnd.Next(100001, 999998);
-             string[] dates_new = Convert.ToString(System.DateTime.Now.Date).Split(new char[] { '.' });
+            string[] dates_new = Convert.ToString(System.DateTime.Now.Date).Split(new char[] { '.' });
             string seconds = DateTime.Now.Second.ToString();
             string seconds_upper;
             if (seconds.Length == 1)
@@ -403,8 +404,8 @@ namespace terminal
             {
                 seconds_upper = seconds;
             }
-        string dates_new_single = dates_new[2].Remove(4) + "-" + dates_new[1] + "-" + dates_new[0];
-         string data = dates_new_single + " " + label3.Text + ":" + seconds_upper;
+            string dates_new_single = dates_new[2].Remove(4) + "-" + dates_new[1] + "-" + dates_new[0];
+            string data = dates_new_single + " " + label3.Text + ":" + seconds_upper;
             /////////////////////////////////////////////
             //начинаем запрос
             try
@@ -417,9 +418,9 @@ namespace terminal
                     "ID_Clienta = '" + rnd_value2.ToString() + "', " +
                     "ID_Sotrudnica = '" + rnd_id_sotr.ToString() + "', " +
                     "Vremya_Data_Vidachi = '" + data + "', " +
-                    "Usluga = 'Покупка ЖД Билета №" + id_bileta.ToString() + ", Рейса №"+ id_reis.ToString() + "'";
+                    "Usluga = 'Покупка ЖД Билета №" + id_bileta.ToString() + ", Рейса №" + id_reis.ToString() + "'";
                 MySqlCommand adda = new MySqlCommand(add, conn);
-               
+
                 MySqlDataReader MyDataReader;
                 MyDataReader = adda.ExecuteReader();
 
@@ -458,7 +459,7 @@ namespace terminal
             button8.Visible = false;
             button9.Visible = false;
             button10.Visible = false;
-           
+
 
         }
 
@@ -481,7 +482,7 @@ namespace terminal
 
         private void button13_Click(object sender, EventArgs e)
         {
-            
+
 
 
 
@@ -492,8 +493,8 @@ namespace terminal
             string rnd_id_sotr = "789456";
 
             int rnd_value, rnd_value2;
-           
-          
+
+
             Random rnd = new Random();
             rnd_value = rnd.Next(100001, 999998);
             rnd_value2 = rnd.Next(100001, 999998);
@@ -520,14 +521,14 @@ namespace terminal
             if (ia == 1)
             {
                 id_bileta = textBox3.Text;
-                string id_clienta="";
+                string id_clienta = "";
                 MySqlConnection conn2 = new MySqlConnection(connStr);
                 // устанавливаем соединение с БД
                 conn2.Open();
                 // запрос
 
                 string auth = "SELECT * FROM Talon_Bilet WHERE ID_Bileta = '" + id_bileta + "'";
-                string id_reis_upper="";
+                string id_reis_upper = "";
                 try
                 {
                     MySqlCommand commandauth = new MySqlCommand(auth, conn2);
@@ -590,10 +591,10 @@ namespace terminal
                     label17.Visible = false;
                     textBox3.Visible = false;
                     textBox3.Text = "";
-                  id_talona = rnd_value.ToString();
+                    id_talona = rnd_value.ToString();
                     label15.Text = "Ваша заявка №" + id_talona + " успешно зарегистрирована!";
                     panel5.Visible = true;
-                   
+
                 }
                 catch (Exception ex)
                 {
@@ -620,6 +621,41 @@ namespace terminal
         private void button15_Click(object sender, EventArgs e)
         {
             panel6.Visible = false;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int r = dataGridView2.CurrentCell.RowIndex;
+
+
+                if (r >= 1)
+                {
+                    r--;
+                    dataGridView2.CurrentCell = dataGridView2.Rows[r].Cells[0];
+                }
+            }
+            catch { }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int r = dataGridView2.CurrentCell.RowIndex;
+
+
+                if (r < dataGridView2.Rows.Count - 1)
+                {
+                    r++;
+                    dataGridView2.CurrentCell = dataGridView2.Rows[r].Cells[0];
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         private void button12_Click(object sender, EventArgs e)
